@@ -3,297 +3,165 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>【測試用】李鑫林 - 資訊安全簡歷</title>
+    <title>李鑫林 - 資訊安全工程師履歷 (模板)</title>
     <style>
-        :root {
-            --bg-color: #0f172a;
-            --container-bg: #1e293b;
-            --text-main: #f8fafc;
-            --text-muted: #94a3b8;
-            --accent-color: #10b981;
-            --warning-red: #ef4444;
+        /* 警示標語樣式 */
+        .template-banner {
+            background-color: #fff3cd;
+            color: #856404;
+            border: 1px solid #ffeeba;
+            padding: 15px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+            border-radius: 4px;
+            font-family: sans-serif;
         }
 
+        /* 原本的履歷樣式 */
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-color);
-            color: var(--text-main);
+            background-color: #f4f7f6;
+            color: #333;
             line-height: 1.6;
             margin: 0;
             padding: 20px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
         }
-
-        /* 測試聲明橫幅 */
-        .test-disclaimer {
-            background-color: var(--warning-red);
-            color: white;
-            width: 100%;
+        .container {
             max-width: 800px;
-            text-align: center;
-            padding: 10px 0;
-            font-weight: bold;
-            border-radius: 8px 8px 0 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            box-shadow: 0 -5px 15px rgba(239, 68, 68, 0.3);
-            z-index: 10;
-        }
-
-        .resume-container {
-            background-color: var(--container-bg);
-            max-width: 800px;
-            width: 100%;
-            border-radius: 0 0 12px 12px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            margin: 0 auto;
+            background: #fff;
             padding: 40px;
-            border-top: 5px solid var(--accent-color);
-            position: relative;
-            overflow: hidden;
-            box-sizing: border-box;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
-
-        /* 背景浮水印 */
-        .watermark {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%) rotate(-30deg);
-            font-size: 8em;
-            color: rgba(255, 255, 255, 0.03);
-            white-space: nowrap;
-            pointer-events: none;
-            user-select: none;
-            z-index: 0;
-        }
-
-        header, section {
-            position: relative;
-            z-index: 1;
-        }
-
         header {
-            border-bottom: 2px solid #334155;
+            border-bottom: 2px solid #2c3e50;
             padding-bottom: 20px;
             margin-bottom: 30px;
         }
-
         h1 {
             margin: 0;
+            color: #2c3e50;
             font-size: 2.5em;
-            color: var(--accent-color);
-            letter-spacing: 2px;
         }
-
-        .subtitle {
-            font-size: 1.2em;
-            color: var(--text-muted);
-            margin-top: 5px;
-        }
-
         .contact-info {
-            display: flex;
-            gap: 20px;
-            margin-top: 15px;
-            flex-wrap: wrap;
+            font-size: 1em;
+            color: #555;
+            margin-top: 10px;
         }
-
-        .contact-info div {
-            background: #0f172a;
-            padding: 8px 15px;
-            border-radius: 6px;
-            font-size: 0.9em;
-            border: 1px solid #334155;
-        }
-
-        .contact-info span {
-            color: var(--accent-color);
-            font-weight: bold;
-            margin-right: 5px;
-        }
-
         h2 {
-            font-size: 1.5em;
-            color: var(--accent-color);
-            border-left: 4px solid var(--accent-color);
-            padding-left: 10px;
-            margin-top: 40px;
+            color: #2980b9;
+            border-bottom: 1px solid #ecf0f1;
+            padding-bottom: 8px;
+            margin-top: 30px;
+            font-size: 1.4em;
+        }
+        .section-content {
+            margin-left: 10px;
+        }
+        .item {
             margin-bottom: 20px;
         }
-
-        .section-content {
-            margin-left: 15px;
-        }
-
-        .item {
-            margin-bottom: 25px;
-        }
-
         .item-title {
-            font-size: 1.2em;
             font-weight: bold;
-            color: var(--text-main);
+            font-size: 1.15em;
+            color: #2c3e50;
         }
-
         .item-subtitle {
+            color: #7f8c8d;
             font-size: 0.95em;
-            color: var(--accent-color);
-            margin-bottom: 10px;
-            font-family: monospace;
+            margin-bottom: 8px;
         }
-
-        .item-desc {
-            color: var(--text-muted);
-        }
-
-        .item-desc ul {
-            margin-top: 8px;
+        ul {
+            margin-top: 5px;
             padding-left: 20px;
         }
-
-        .item-desc li {
-            margin-bottom: 5px;
+        li {
+            margin-bottom: 6px;
         }
-
         .tags {
             display: flex;
-            gap: 10px;
-            margin-top: 10px;
             flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
         }
-
         .tag {
-            background-color: rgba(16, 185, 129, 0.1);
-            color: var(--accent-color);
-            padding: 4px 10px;
-            border-radius: 4px;
-            font-size: 0.85em;
-            border: 1px solid rgba(16, 185, 129, 0.3);
+            background: #e8f4f8;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            color: #2980b9;
+            font-weight: 500;
         }
-
-        a {
-            color: var(--accent-color);
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-        
-        footer {
+        .expected-salary {
+            background-color: #fcf3cf;
+            padding: 10px 15px;
+            border-left: 4px solid #f1c40f;
             margin-top: 20px;
-            color: var(--warning-red);
-            font-size: 0.85em;
-            text-align: center;
+            font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-    <div class="test-disclaimer">
-        ⚠️ 測試網頁：以下經歷與專題內容皆為虛構，僅供排版展示使用 ⚠️
+<div class="template-banner">
+    ⚠️ 提醒：此網頁為「履歷模板」。正式投遞前，請務必確認替換為您的真實資料。
+</div>
+<div class="container">
+    <header>
+        <h1>李鑫林</h1>
+        <div class="contact-info">
+            Email: xinlin.lee@example.com | GitHub: github.com/xinlin-lee<br>
+            技術筆記: hackmd.io/@xinlin-lee
+        </div>
+    </header>
+
+    <div class="section-content">
+        <h2>學歷背景</h2>
+        <div class="item">
+            <div class="item-title">國立金門大學</div>
+            <div class="item-subtitle">資訊工程學系 學士 | 預計畢業年份：202X</div>
+            <ul>
+                <li><strong>相關修課：</strong>Linux、程式設計、資訊安全概論。</li>
+            </ul>
+        </div>
+
+        <h2>專案與實務經歷</h2>
+        <div class="item">
+            <div class="item-title">惡意程式與威脅偵測分析研究</div>
+            <div class="item-subtitle">個人專題研究 | 資訊安全領域</div>
+            <ul>
+                <li>使用 Python 進行資料前處理與數據分析，協助找出潛在的資安威脅模式。</li>
+                <li>運用 pandas 與 apyori 等資料處理庫，對網路流量與日誌進行關聯規則學習（Association Rule Learning）。</li>
+                <li>建立自動化腳本以提升威脅偵測的效率，並將研究過程完整記錄於 HackMD 作為技術資產。</li>
+            </ul>
+        </div>
+
+        <h2>專業技能</h2>
+        <div class="tags">
+            <span class="tag">Python 開發</span>
+            <span class="tag">資訊安全分析</span>
+            <span class="tag">惡意程式偵測</span>
+            <span class="tag">資料結構</span>
+            <span class="tag">Pandas / 數據分析</span>
+            <span class="tag">HackMD 知識管理</span>
+        </div>
+
+        <h2>個人特質與興趣</h2>
+        <div class="item">
+            <ul>
+                <li><strong>網路技術研討：</strong> 對底層網路架構與最新的資安攻防技術抱有極大熱忱。</li>
+                <li><strong>語言學習：</strong> 持續學習日文、英文，培養跨國溝通與閱讀外文技術文件的能力。</li>
+                <li><strong>生活平衡：</strong> 熱愛旅遊探索新事物，並喜歡透過玩遊戲激發邏輯思考與解題靈感。</li>
+            </ul>
+        </div>
+
+        <div class="expected-salary">
+            期望薪資：NT$ 50,000 - NT$ 60,000 / 月 (依據目前資安市場新鮮人行情可議)
+        </div>
     </div>
-
-    <div class="resume-container">
-        <div class="watermark">TEST ONLY</div>
-
-        <header>
-            <h1>李鑫林</h1>
-            <div class="subtitle">國立金門大學 資訊工程學系 | 專注於網路安全與滲透測試</div>
-            
-            <div class="contact-info">
-                <div><span>Email:</span> <a href="mailto:lixinlinpersonal01@gmail.com">lixinlinpersonal01@gmail.com</a></div>
-                <div><span>Phone:</span> 0921-517-835</div>
-                <div><span>Interests:</span> 網路、旅遊、玩遊戲</div>
-            </div>
-        </header>
-
-        <section>
-            <h2>關於我</h2>
-            <div class="section-content">
-                <p class="item-desc">目前就讀於金門大學資訊工程學系，對資訊安全領域具有濃厚熱忱。具備扎實的計算機科學基礎，平時活躍於各類資安社群與 CTF (Capture The Flag) 競賽。善於分析網路架構漏洞，並致力於研究現代應用程式安全與防禦機制。閒暇之餘喜歡透過旅遊拓展視野，以及在遊戲中鍛鍊邏輯思考能力。</p>
-            </div>
-        </section>
-
-        <section>
-            <h2>相關經歷 (Experience)</h2>
-            <div class="section-content">
-                <div class="item">
-                    <div class="item-title">滲透測試實習生 (Penetration Testing Intern) - 【虛構】</div>
-                    <div class="item-subtitle">盾衛科技資訊安全有限公司 | 2024 年 7 月 – 2025 年 1 月</div>
-                    <div class="item-desc">
-                        <ul>
-                            <li>協助企業客戶進行 Web 應用程式弱點掃描，熟悉 OWASP Top 10 常見漏洞（如 SQL Injection, XSS, CSRF）。</li>
-                            <li>撰寫自動化腳本 (Python) 輔助日常漏洞檢測流程，提升團隊 30% 測試效率。</li>
-                            <li>參與紅隊演練 (Red Teaming) 專案，學習並實作特權提升與橫向移動技術。</li>
-                            <li>協助產出修補建議報告，並與開發團隊溝通修補方案。</li>
-                        </ul>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="item-title">金門大學資訊安全研究社 社長 - 【虛構】</div>
-                    <div class="item-subtitle">金門大學 | 2023 年 9 月 – 2024 年 6 月</div>
-                    <div class="item-desc">
-                        <ul>
-                            <li>主辦校內首屆「金大資安搶旗賽 (NQU CTF)」，吸引超過 50 名學生參與，推廣校園資安意識。</li>
-                            <li>習慣使用 HackMD 整理並公開分享每週的資安技術筆記與 CTF Writeups，促進社群知識交流與傳承。</li>
-                            <li>帶領社團團隊參與全國資安技能金盾獎，成功晉級決賽。</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section>
-            <h2>研究專題 (Projects)</h2>
-            <div class="section-content">
-                <div class="item">
-                    <div class="item-title">基於機器學習的惡意網路流量偵測系統 - 【虛構】</div>
-                    <div class="item-subtitle">畢業專題 / 獨立研究</div>
-                    <div class="item-desc">
-                        <p>為了應對日益複雜的 DDoS 攻擊與 Botnet 活動，開發了一套基於機器學習的異常流量分析工具。</p>
-                        <ul>
-                            <li>使用 <strong>Zeek</strong> (原 Bro) 進行網路封包擷取與特徵提取。</li>
-                            <li>利用 Python 與 <strong>Scikit-learn</strong> 建立隨機森林 (Random Forest) 模型，對正常與惡意流量進行分類。</li>
-                            <li>系統在測試資料集上達到 94% 的準確率，能有效識別未知變種的惡意連線行為。</li>
-                        </ul>
-                        <div class="tags">
-                            <span class="tag">Python</span>
-                            <span class="tag">Machine Learning</span>
-                            <span class="tag">Zeek</span>
-                            <span class="tag">Network Security</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="item">
-                    <div class="item-title">家用物聯網 (IoT) 路由器韌體漏洞挖掘 - 【虛構】</div>
-                    <div class="item-subtitle">進階系統安全課程專案</div>
-                    <div class="item-desc">
-                        <p>針對市面上兩款普及率高的家用路由器進行韌體分析與漏洞挖掘。</p>
-                        <ul>
-                            <li>使用 <strong>Binwalk</strong> 解包路由器韌體，並以 <strong>QEMU</strong> 進行系統架構模擬。</li>
-                            <li>透過 <strong>Ghidra</strong> 進行逆向工程，成功在 Web 管理介面的 CGI 程式中發現一處未授權的命令注入 (Command Injection) 漏洞。</li>
-                            <li>撰寫 Proof of Concept (PoC) 腳本並通報廠商，取得 CVE 漏洞編號（申請中）。</li>
-                        </ul>
-                        <div class="tags">
-                            <span class="tag">Reverse Engineering</span>
-                            <span class="tag">IoT Security</span>
-                            <span class="tag">Ghidra</span>
-                            <span class="tag">Linux</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </div>
-
-    <footer>
-        * 本網頁僅供開發者個人測試使用，不具備任何正式履歷效力。
-    </footer>
+</div>
 
 </body>
 </html>
