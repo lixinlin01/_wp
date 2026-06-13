@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+<div class="content-header">
+  <form class="search-form" action="/" method="GET">
+    <input type="text" name="search" placeholder="搜尋文章標題..." value="<%= typeof search !== 'undefined' ? search : '' %>">
+    <button type="submit">搜尋</button>
+  </form>
+</div>
+<% if (typeof search !== 'undefined' && search) { %>
+  <div class="search-info">搜尋「<%= search %>」的結果：找到 <%= posts.length %> 篇文章</div>
+<% } %>
+<% if (posts.length === 0) { %>
+  <div class="empty-state">
+    <p><%= typeof search !== 'undefined' && search ? '沒有符合的文章' : '尚無文章' %></p>
+    <% if (currentUser && !search) { %><a href="/new">寫第一篇</a><% } %>
+  </div>
+<% } %>
+<% posts.forEach(p => { %>
+  <div class="post">
+    <div class="post-header">
+      <div class="avatar" style="background:<%= getAvatarColor(p.username) %>"><%= getInitials(p.display_name || p.username) %></div>
+      <a href="/user/<%= p.username %>" class="post-user"><%= p.display_name || p.username %></a>
+      <% if (!p.is_public) { %><span class="post-badge">私人</span><% } %>
+      <span class="post-time"><%= timeAgo(p.created_at) %></span>
+    </div>
+    <div class="post-title"><a href="/post/<%= p.id %>"><%= p.title %></a></div>
+    <div class="post-content"><%= p.content %></div>
+    <div class="actions-bar">
+      <form action="/toggle-like/post/<%= p.id %>" method="POST">
+        <button type="submit" class="like-btn <%= p.user_liked ? 'liked' : '' %>">
+          <%= p.user_liked ? '❤' : '♡' %> <span class="action-count"><%= p.like_count %></span>
+        </button>
+      </form>
+      <a href="/post/<%= p.id %>" class="action-btn">💬 <span class="action-count"><%= p.comment_count %></span></a>
+      <button onclick="sharePost(<%= p.id %>)" class="action-btn share-btn">🔗</button>
+    </div>
+  </div>
+<% }) %>
+<%- include('partials/footer') %>

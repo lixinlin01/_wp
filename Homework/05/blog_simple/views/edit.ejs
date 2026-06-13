@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>編輯 - <%= post.title %> - 我的網誌</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/">我的網誌</a></h1>
+      <a href="/" class="btn">回列表</a>
+    </header>
+    <form action="/edit/<%= post.id %>" method="POST">
+      <label for="title">標題</label>
+      <input type="text" id="title" name="title" value="<%= post.title %>" required>
+      <label for="content">內容</label>
+      <textarea id="content" name="content" rows="12" required><%= post.content %></textarea>
+      <button type="submit" class="btn">更新文章</button>
+    </form>
+  </div>
+</body>
+</html>

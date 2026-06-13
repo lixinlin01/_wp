@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= typeof title !== 'undefined' ? title + ' - ' : '' %>Threads 網誌</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="layout">
+  <aside class="sidebar-left">
+    <% if (currentUser) { %>
+      <div class="profile-card">
+        <a href="/user/<%= currentUser.username %>">
+          <div class="big-avatar" style="background:<%= getAvatarColor(currentUser.username) %>">
+            <%= getInitials(currentUser.display_name || currentUser.username) %>
+          </div>
+          <div class="profile-card-name"><%= currentUser.display_name || currentUser.username %></div>
+          <div class="profile-card-username">@<%= currentUser.username %></div>
+        </a>
+      </div>
+      <nav class="side-nav">
+        <a href="/" class="side-link">🏠 首頁</a>
+        <a href="/new" class="side-link">✏️ 寫文章</a>
+        <a href="/user/<%= currentUser.username %>" class="side-link">👤 個人檔案</a>
+        <a href="/settings" class="side-link">⚙️ 設定</a>
+      </nav>
+    <% } else { %>
+      <div class="profile-card">
+        <div class="big-avatar" style="background:#888">?</div>
+        <div class="profile-card-name">訪客</div>
+      </div>
+      <nav class="side-nav">
+        <a href="/" class="side-link">🏠 首頁</a>
+      </nav>
+    <% } %>
+  </aside>
+  <main class="content">

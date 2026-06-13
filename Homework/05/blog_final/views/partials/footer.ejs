@@ -1,0 +1,41 @@
+  </main>
+  <aside class="sidebar-right">
+    <% if (currentUser) { %>
+      <div class="right-user-card">
+        <div class="right-user-avatar" style="background:<%= getAvatarColor(currentUser.username) %>">
+          <%= getInitials(currentUser.display_name || currentUser.username) %>
+        </div>
+        <div class="right-user-info">
+          <div class="right-user-name"><%= currentUser.display_name || currentUser.username %></div>
+          <div class="right-user-username">@<%= currentUser.username %></div>
+        </div>
+        <form action="/logout" method="POST" class="right-logout-form">
+          <button type="submit" class="logout-btn">登出</button>
+        </form>
+      </div>
+      <div class="right-hint">已登入</div>
+    <% } else { %>
+      <div class="right-auth">
+        <h3>歡迎</h3>
+        <p>加入討論吧</p>
+        <a href="/login" class="right-btn">登入</a>
+        <a href="/register" class="right-btn right-btn-outline">註冊</a>
+      </div>
+    <% } %>
+  </aside>
+</div>
+<div id="toast" class="toast">連結已複製</div>
+<script>
+function sharePost(id) {
+  var url = window.location.origin + '/post/' + id;
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(function() {
+      var el = document.getElementById('toast');
+      el.classList.add('show');
+      setTimeout(function() { el.classList.remove('show'); }, 2000);
+    });
+  }
+}
+</script>
+</body>
+</html>

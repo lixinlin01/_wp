@@ -1,0 +1,38 @@
+<%- include('partials/header') %>
+<div class="form-page">
+  <h2>帳號設定</h2>
+  <% if (success) { %><div class="form-success"><%= success %></div><% } %>
+  <% if (error) { %><div class="error-msg"><%= error %></div><% } %>
+
+  <form action="/settings" method="POST">
+    <div class="form-group">
+      <label for="display_name">顯示名稱</label>
+      <input type="text" id="display_name" name="display_name" value="<%= user.display_name || user.username %>">
+    </div>
+    <div class="form-group">
+      <label for="bio">自我介紹</label>
+      <textarea id="bio" name="bio" rows="4"><%= user.bio || '' %></textarea>
+    </div>
+    <button type="submit" class="btn-primary">儲存設定</button>
+  </form>
+
+  <hr class="form-divider">
+
+  <h2 style="margin-top:0;">變更密碼</h2>
+  <form action="/settings/password" method="POST">
+    <div class="form-group">
+      <label for="current_password">目前密碼</label>
+      <input type="password" id="current_password" name="current_password" required>
+    </div>
+    <div class="form-group">
+      <label for="new_password">新密碼</label>
+      <input type="password" id="new_password" name="new_password" required minlength="4">
+    </div>
+    <div class="form-group">
+      <label for="confirm_password">確認新密碼</label>
+      <input type="password" id="confirm_password" name="confirm_password" required minlength="4">
+    </div>
+    <button type="submit" class="btn-danger">更新密碼</button>
+  </form>
+</div>
+<%- include('partials/footer') %>

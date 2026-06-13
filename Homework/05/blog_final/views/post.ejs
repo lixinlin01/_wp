@@ -1,0 +1,55 @@
+<%- include('partials/header') %>
+<div class="post-detail">
+  <div class="post">
+    <div class="post-header">
+      <div class="avatar" style="background:<%= getAvatarColor(post.username) %>"><%= getInitials(post.display_name || post.username) %></div>
+      <a href="/user/<%= post.username %>" class="post-user"><%= post.display_name || post.username %></a>
+      <% if (!post.is_public) { %><span class="post-badge">私人</span><% } %>
+      <span class="post-time"><%= timeAgo(post.created_at) %></span>
+    </div>
+    <div class="post-content"><%= post.content %></div>
+    <div class="actions-bar">
+      <form action="/toggle-like/post/<%= post.id %>" method="POST">
+        <button type="submit" class="like-btn <%= post.user_liked ? 'liked' : '' %>">
+          <%= post.user_liked ? '❤' : '♡' %> <span class="action-count"><%= post.like_count %></span>
+        </button>
+      </form>
+      <button onclick="sharePost(<%= post.id %>)" class="action-btn share-btn">🔗 分享</button>
+      <% if (currentUser && currentUser.id === post.user_id) { %>
+        <a href="/edit/<%= post.id %>" class="action-btn">編輯</a>
+        <form action="/delete/<%= post.id %>" method="POST" onsubmit="return confirm('確定刪除？')">
+          <button type="submit" class="action-btn">刪除</button>
+        </form>
+      <% } %>
+    </div>
+  </div>
+
+  <div class="comment-section">
+    <h3>留言 (<%= commentTree.length %>)</h3>
+    <% if (currentUser) { %>
+      <div class="comment-form-wrap" id="comment-form">
+        <form action="/post/<%= post.id %>/comment" method="POST">
+          <% if (replyTo) { %>
+            <input type="hidden" name="parent_id" value="<%= replyTo %>">
+            <div class="reply-info">
+              正在回覆 <%= replyTarget ? (replyTarget.display_name || replyTarget.username) : '' %>
+              <a href="/post/<%= post.id %>">取消</a>
+            </div>
+          <% } %>
+          <textarea name="content" placeholder="撰寫留言..." required></textarea>
+          <div class="form-footer">
+            <span></span>
+            <button type="submit">發布</button>
+          </div>
+        </form>
+      </div>
+    <% } else { %>
+      <p style="font-size:14px;color:#888;margin-bottom:16px;"><a href="/login">登入</a> 後即可留言</p>
+    <% } %>
+    <% if (commentTree.length === 0) { %>
+      <p style="font-size:14px;color:#888;">尚無留言</p>
+    <% } %>
+    <%- renderCommentTree(commentTree, 0) %>
+  </div>
+</div>
+<%- include('partials/footer') %>

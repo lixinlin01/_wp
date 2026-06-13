@@ -1,0 +1,48 @@
+<%- include('partials/header') %>
+<div class="profile-header">
+  <div class="profile-avatar" style="background:<%= getAvatarColor(profileUser.username) %>">
+    <%= getInitials(profileUser.display_name || profileUser.username) %>
+  </div>
+  <div class="profile-name"><%= profileUser.display_name || profileUser.username %></div>
+  <div class="profile-username">@<%= profileUser.username %></div>
+  <% if (profileUser.bio) { %><div class="profile-bio"><%= profileUser.bio %></div><% } %>
+  <div class="profile-stats">
+    <span><strong><%= posts.length %></strong> 篇文章</span>
+    <span><strong><%= followerCount %></strong> 粉絲</span>
+    <span><strong><%= followingCount %></strong> 追蹤中</span>
+  </div>
+  <% if (currentUser && currentUser.id === profileUser.id) { %>
+    <div class="profile-actions"><a href="/new" class="follow-btn">寫文章</a></div>
+  <% } else if (currentUser) { %>
+    <div class="profile-actions">
+      <form action="<%= isFollowing ? '/unfollow/' : '/follow/' %><%= profileUser.id %>" method="POST">
+        <button type="submit" class="follow-btn <%= isFollowing ? 'following' : '' %>">
+          <%= isFollowing ? '追蹤中' : '追蹤' %>
+        </button>
+      </form>
+    </div>
+  <% } %>
+</div>
+<% if (posts.length === 0) { %><div class="empty-state">尚無文章</div><% } %>
+<% posts.forEach(p => { %>
+  <div class="post">
+    <div class="post-header">
+      <div class="avatar" style="background:<%= getAvatarColor(p.username) %>"><%= getInitials(p.display_name || p.username) %></div>
+      <a href="/user/<%= p.username %>" class="post-user"><%= p.display_name || p.username %></a>
+      <% if (!p.is_public) { %><span class="post-badge">私人</span><% } %>
+      <span class="post-time"><%= timeAgo(p.created_at) %></span>
+    </div>
+    <div class="post-title"><a href="/post/<%= p.id %>"><%= p.title %></a></div>
+    <div class="post-content"><%= p.content %></div>
+    <div class="actions-bar">
+      <form action="/toggle-like/post/<%= p.id %>" method="POST">
+        <button type="submit" class="like-btn <%= p.user_liked ? 'liked' : '' %>">
+          <%= p.user_liked ? '❤' : '♡' %> <span class="action-count"><%= p.like_count %></span>
+        </button>
+      </form>
+      <a href="/post/<%= p.id %>" class="action-btn">💬 <span class="action-count"><%= p.comment_count %></span></a>
+      <button onclick="sharePost(<%= p.id %>)" class="action-btn share-btn">🔗</button>
+    </div>
+  </div>
+<% }) %>
+<%- include('partials/footer') %>

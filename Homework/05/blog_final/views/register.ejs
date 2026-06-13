@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>註冊 - Threads 網誌</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<div class="auth-page">
+  <h1>註冊</h1>
+  <% if (error) { %><div class="error-msg"><%= error %></div><% } %>
+  <form action="/register" method="POST">
+    <div class="form-group">
+      <label for="username">帳號</label>
+      <input type="text" id="username" name="username" required minlength="3">
+    </div>
+    <div class="form-group">
+      <label for="display_name">顯示名稱</label>
+      <input type="text" id="display_name" name="display_name" placeholder="可留空，預設使用帳號">
+    </div>
+    <div class="form-group">
+      <label for="password">密碼</label>
+      <input type="password" id="password" name="password" required minlength="4">
+    </div>
+    <button type="submit" class="btn-primary">註冊</button>
+  </form>
+  <p class="auth-footer">已經有帳號？<a href="/login">登入</a></p>
+</div>
+</body>
+</html>

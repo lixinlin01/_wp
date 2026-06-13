@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>我的網誌</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1><a href="/">我的網誌</a></h1>
+      <a href="/new" class="btn">寫新文章</a>
+    </header>
+    <main>
+      <% if (posts.length === 0) { %>
+        <p class="empty">尚無文章，<a href="/new">寫第一篇吧</a></p>
+      <% } %>
+      <% posts.forEach(post => { %>
+        <article>
+          <h2><a href="/post/<%= post.id %>"><%= post.title %></a></h2>
+          <div class="meta">
+            <span>建立: <%= post.created_at %></span>
+            <span>更新: <%= post.updated_at %></span>
+          </div>
+          <p><%= post.content.slice(0, 200) %><% if (post.content.length > 200) { %>...<% } %></p>
+          <div class="actions">
+            <a href="/post/<%= post.id %>" class="btn">閱讀更多</a>
+            <a href="/edit/<%= post.id %>" class="btn edit">編輯</a>
+            <form action="/delete/<%= post.id %>" method="POST" style="display:inline" onsubmit="return confirm('確定刪除？')">
+              <button type="submit" class="btn delete">刪除</button>
+            </form>
+          </div>
+        </article>
+      <% }) %>
+    </main>
+  </div>
+</body>
+</html>
