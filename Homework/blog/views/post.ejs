@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <title><%= post.title %></title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="container">
+    <h1><a href="/">我的網誌</a></h1>
+    <article>
+      <h2><%= post.title %></h2>
+      <time>建立於 <%= post.created_at %> | 更新於 <%= post.updated_at %></time>
+      <div class="content"><%= post.content %></div>
+    </article>
+    <div class="actions">
+      <a href="/posts/<%= post.id %>/edit" class="btn">編輯</a>
+      <form action="/posts/<%= post.id %>/delete" method="post" style="display:inline">
+        <button type="submit" class="btn danger" onclick="return confirm('確定刪除？')">刪除</button>
+      </form>
+      <a href="/" class="btn">回列表</a>
+    </div>
+  </div>
+</body>
+</html>
